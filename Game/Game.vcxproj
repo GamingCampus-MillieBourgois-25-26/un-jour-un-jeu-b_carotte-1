@@ -97,17 +97,15 @@
   <ItemGroup>
     <ClCompile Include="BulletHellAlice\Scenes\GameScene.cpp" />
     <ClCompile Include="BulletHellAlice\PlayerController.cpp" />
-    <ClCompile Include="include\Demo\Tile.cpp" />
+    <ClCompile Include="BulletHellAlice\Enemy\FanShooter.cpp" />
+    <ClCompile Include="BulletHellAlice\Enemy\CurtainSpawner.cpp" />
+    <ClCompile Include="BulletHellAlice\Enemy\EasySentry.cpp" />
+    <ClCompile Include="BulletHellAlice\HitboxRenderer.cpp" />
+    <ClCompile Include="BulletHellAlice\HealthBarRenderer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
+    <ClCompile Include="BulletHellAlice\Enemy\Projectile.cpp" />
+    <ClCompile Include="BulletHellAlice\ProgressionManager.cpp" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ClInclude Include="include\Demo\Player.h" />
-    <ClInclude Include="include\Demo\Tile.h" />
-    <ClInclude Include="Scenes\Demo\DemoScene.h" />
-  </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{fae7003c-61cf-41e6-9b58-70e97d3f7878}</Project>
@@ -116,6 +114,13 @@
   <ItemGroup>
     <ClInclude Include="BulletHellAlice\PlayerController.h" />
     <ClInclude Include="BulletHellAlice\Scenes\GameScene.h" />
+    <ClInclude Include="BulletHellAlice\Enemy\Projectile.h" />
+    <ClInclude Include="BulletHellAlice\Enemy\FanShooter.h" />
+    <ClInclude Include="BulletHellAlice\Enemy\CurtainSpawner.h" />
+    <ClInclude Include="BulletHellAlice\ProgressionManager.h" />
+    <ClInclude Include="BulletHellAlice\Enemy\EasySentry.h" />
+    <ClInclude Include="BulletHellAlice\HitboxRenderer.h" />
+    <ClInclude Include="BulletHellAlice\HealthBarRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
