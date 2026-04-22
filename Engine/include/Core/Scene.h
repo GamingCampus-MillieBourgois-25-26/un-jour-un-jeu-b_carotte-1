@@ -5,11 +5,11 @@
 
 #include "Core/GameObject.h"
 
+class GameObject;
+
 class Scene
 {
 public:
-
-
     explicit Scene(const std::string& _name, bool _enabled_at_start = true);
     virtual ~Scene() = default;
 
@@ -23,13 +23,13 @@ public:
     void OnDebug() const;
     void OnDebugSelected() const;
     void PostRender() const;
-    void Present() const;
+    void Present();
 
     void OnEnable() const;
     void OnDisable() const;
 
     void Destroy() const;
-    void Finalize() const;
+    void Finalize();
 
     const std::string& GetName() const;
 
@@ -49,6 +49,8 @@ public:
     bool IsMarkedForDeletion() const;
 
 private:
+    void DeleteMarkedGameObjects();
+
     std::string name;
     std::vector<std::unique_ptr<GameObject>> gameObjects;
 

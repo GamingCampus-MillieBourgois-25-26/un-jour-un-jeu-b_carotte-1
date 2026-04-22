@@ -96,9 +96,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BulletHellAlice\Scenes\GameScene.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="BulletHellAlice\PlayerController.cpp" />
+    <ClCompile Include="include\Demo\Tile.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ClInclude Include="include\Demo\Player.h" />
+    <ClInclude Include="include\Demo\Tile.h" />
+    <ClInclude Include="Scenes\Demo\DemoScene.h" />
+  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
       <Project>{fae7003c-61cf-41e6-9b58-70e97d3f7878}</Project>

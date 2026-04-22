@@ -23,8 +23,7 @@ public:
 private:
     static std::unique_ptr<Logger> instance;
 
-    const std::filesystem::path defaultLogFolder = std::filesystem::temp_directory_path() / "SFML Discovery Engine" /
-        "Logs";
+    const std::filesystem::path defaultLogFolder = std::filesystem::temp_directory_path() / "SFML Discovery Engine" / "Logs";
     const std::string defaultLogFileName = "EngineLog.txt";
 
     std::ofstream file = std::ofstream();
@@ -37,7 +36,8 @@ private:
 public:
     ~Logger();
 
-    static void Log(ELogLevel _level, LogFormat _format, auto&&... _args);
+    template<typename... Args>
+    static void Log(ELogLevel _level, LogFormat _format, Args&&... _args);
 };
 
 #include "Logger.inl"
