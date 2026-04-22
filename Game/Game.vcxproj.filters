@@ -18,12 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BulletHellAlice\PlayerController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletHellAlice\Scenes\GameScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Scenes\DefaultScene.h">
+    <ClInclude Include="BulletHellAlice\PlayerController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Player.h">
+    <ClInclude Include="BulletHellAlice\Scenes\GameScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
