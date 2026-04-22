@@ -101,14 +101,14 @@
     <ClCompile Include="BulletSpawner.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
     <ClInclude Include="include\Demo\Player.h" />
+    <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
-=======
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletHellPlayer.h" />
     <ClInclude Include="BulletHellScene.h" />
@@ -118,7 +118,6 @@
     <ClInclude Include="include\Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Scenes\DefaultScene.h" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

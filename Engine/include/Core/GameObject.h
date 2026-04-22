@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "Core/Component.h"
 #include "Maths/Vector2.h"
@@ -12,9 +13,6 @@ class Component;
 class GameObject
 {
 public:
-    GameObject() = default;
-    ~GameObject();
-
     std::string GetName() const;
 
     Maths::Vector2<float> GetPosition() const;
@@ -27,7 +25,7 @@ public:
 
     void SetPosition(const Maths::Vector2<float>& _position);
 
-    void SetRotation(const sf::Angle _rotation);
+    void SetRotation(sf::Angle _rotation);
 
     void SetScale(const Maths::Vector2<float>& _scale);
 
@@ -37,10 +35,7 @@ public:
     template <typename ComponentType> requires IsComponent<ComponentType>
     ComponentType* GetComponent();
 
-    std::vector<Component*>& GetComponents();
-
-    void AddComponent(Component* _component);
-    void RemoveComponent(Component* _component);
+    std::vector<std::unique_ptr<Component>>& GetComponents();
 
     void Awake() const;
     void Start() const;
@@ -52,13 +47,13 @@ public:
     void PostRender() const;
     void OnDebug() const;
     void OnDebugSelected() const;
-    void Present() const;
+    void Present();
 
     void OnEnable() const;
     void OnDisable() const;
 
     void Destroy() const;
-    void Finalize() const;
+    void Finalize();
 
     void Enable();
     void Disable();
@@ -80,9 +75,11 @@ private:
     sf::Angle rotation = sf::degrees(0.f);
     Maths::Vector2<float> scale = Maths::Vector2f::One;
 
-    std::vector<Component*> components;
+    std::vector<std::unique_ptr<Component>> components;
 
     Scene* scene = nullptr;
+
+    void DeleteMarkedComponents();
 };
 
 #include "GameObject.inl"

@@ -82,12 +82,14 @@ void Scene::PostRender() const
     }
 }
 
-void Scene::Present() const
+void Scene::Present()
 {
     for (const auto& game_object : gameObjects)
     {
         game_object->Present();
     }
+
+    DeleteMarkedGameObjects();
 }
 
 void Scene::OnEnable() const
@@ -114,12 +116,14 @@ void Scene::Destroy() const
     }
 }
 
-void Scene::Finalize() const
+void Scene::Finalize()
 {
     for (const auto& game_object : gameObjects)
     {
         game_object->Finalize();
     }
+
+    DeleteMarkedGameObjects();
 }
 
 const std::string& Scene::GetName() const
@@ -161,9 +165,9 @@ const std::vector<std::unique_ptr<GameObject>>& Scene::GetGameObjects() const
 
 void Scene::DestroyGameObject(const GameObject* _game_object)
 {
-    std::erase_if(gameObjects, [_game_object](const std::unique_ptr<GameObject>& obj)
+    std::erase_if(gameObjects, [_game_object](const std::unique_ptr<GameObject>& _obj)
     {
-        return obj.get() == _game_object;
+        return _obj.get() == _game_object;
     });
 }
 
@@ -192,8 +196,12 @@ bool Scene::IsEnabled() const
 
 void Scene::MarkForDeletion()
 {
-    markedForDeletion = true;
     Disable();
+
+    for (const auto& game_object : gameObjects)
+        game_object->MarkForDeletion();
+
+    markedForDeletion = true;
 }
 
 bool Scene::IsMarkedForDeletion() const
@@ -211,7 +219,7 @@ void Scene::DeleteMarkedGameObjects()
         _game_object->Destroy();
         _game_object->Finalize();
 
-        Logger::Log(ELogLevel::Debug, "Scene {} deleted.", _game_object->GetName());
+        Logger::Log(ELogLevel::Debug, "GameObject {} deleted.", _game_object->GetName());
 
         return true;
     });

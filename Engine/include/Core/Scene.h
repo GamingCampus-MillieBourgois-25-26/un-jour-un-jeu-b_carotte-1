@@ -23,13 +23,13 @@ public:
     void OnDebug() const;
     void OnDebugSelected() const;
     void PostRender() const;
-    void Present() const;
+    void Present();
 
     void OnEnable() const;
     void OnDisable() const;
 
     void Destroy() const;
-    void Finalize() const;
+    void Finalize();
 
     const std::string& GetName() const;
 
