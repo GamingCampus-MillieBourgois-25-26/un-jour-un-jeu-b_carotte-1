@@ -20,6 +20,7 @@ namespace TowerDefenseAlice
         int towerCost = 50;
         void Update(float _delta_time) override {
             placeTimer += _delta_time;
+            CheckEnemiesBaseReached();
 
             auto* moduleManager = Engine::GetInstance()->GetModuleManager();
             auto* windowModule = moduleManager->GetModule<WindowModule>();
@@ -48,6 +49,24 @@ namespace TowerDefenseAlice
         }
 
     private:
+        void CheckEnemiesBaseReached() {
+            Scene* scene = GetOwner()->GetScene();
+            if (!scene) return;
+
+            const auto& gameObjects = scene->GetGameObjects();
+            for (size_t i = 0; i < gameObjects.size(); ++i) {
+                GameObject* obj = gameObjects[i].get();
+
+                if (obj->IsEnabled() && obj->GetName().find("Pool_Enemy") != std::string::npos) {
+
+                    if (obj->GetPosition().x >= 1550.0f) {
+
+                        std::cout << "ALERTE : L'ennemi " << obj->GetName() << " a force le passage !" << std::endl;
+                        obj->Disable();
+                    }
+                }
+            }
+        }
         void PlaceTower(Maths::Vector2f _pos) {
             if (playerGold < towerCost) {
                 printf("Pas assez d'or !\n", towerCost, playerGold);

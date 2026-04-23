@@ -45,21 +45,18 @@ namespace TowerDefenseAlice
             GameObject* spawnerObj = CreateGameObject("Spawner");
             EnemySpawner* spawnerComp = spawnerObj->CreateComponent<TowerDefenseAlice::EnemySpawner>();
             spawnerObj->SetPosition({ 70.f, -50.f });
+            spawnerComp->roadWaypoints = road;
+
             for (int i = 0; i < 20; i++)
             {
                 GameObject* enemy = CreateGameObject("Pool_Enemy_" + std::to_string(i));
-                EnemyMovement* move = enemy->CreateComponent<TowerDefenseAlice::EnemyMovement>();
+                enemy->CreateComponent<TowerDefenseAlice::EnemyMovement>();
                 enemy->CreateComponent<Health>();
 
-                if (tex)
-                    enemy->CreateComponent<SpriteRenderer>(tex);
-
-                if (move)
-                    move->waypoints = road;
-
-                enemy->Disable(); 
-
-                spawnerComp->AddToPool(enemy); 
+                if (tex) enemy->CreateComponent<SpriteRenderer>(tex);
+				enemy->SetPosition({ -1000.f, -1000.f });
+                enemy->Disable();
+                spawnerComp->AddToPool(enemy);
             }
 
             for (int i = 0; i < 10; i++)

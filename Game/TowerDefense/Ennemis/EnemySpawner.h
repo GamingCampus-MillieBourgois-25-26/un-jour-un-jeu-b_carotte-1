@@ -8,6 +8,8 @@ namespace TowerDefenseAlice
     class EnemySpawner : public Component
     {
     public:
+        std::vector<Maths::Vector2f> roadWaypoints;
+
         void AddToPool(GameObject* _enemy) {
             pool.push_back(_enemy);
         }
@@ -26,13 +28,20 @@ namespace TowerDefenseAlice
         std::vector<GameObject*> pool;
 
         void SpawnFromPool() {
-            for (GameObject* enemy : pool) {
+            for (size_t i = 0; i < pool.size(); ++i) {
+                GameObject* enemy = pool[i];
+
                 if (!enemy->IsEnabled()) {
                     auto* move = enemy->GetComponent<TowerDefenseAlice::EnemyMovement>();
-                    if (move) move->Reset();
+
+                    if (move) {
+                        move->Reset();
+                        move->waypoints = roadWaypoints; 
+                    }
 
                     enemy->SetPosition(GetOwner()->GetPosition());
                     enemy->Enable();
+
                     return;
                 }
             }
