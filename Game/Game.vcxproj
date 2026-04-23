@@ -102,6 +102,8 @@
     <ClCompile Include="BulletHellAlice\Enemy\EasySentry.cpp" />
     <ClCompile Include="BulletHellAlice\HitboxRenderer.cpp" />
     <ClCompile Include="BulletHellAlice\HealthBarRenderer.cpp" />
+    <ClCompile Include="TowerDefense\Health\Health.cpp" />
+    <ClCompile Include="TowerDefense\Towers\Projectile.cpp" />
     <ClCompile Include="TowerDefense\Towers\Tower.cpp" />
     <ClCompile Include="TowerDefense\Scenes\TDScene.cpp" />
     <ClCompile Include="TowerDefense\Ennemis\EnemyMovement.cpp" />
@@ -109,6 +111,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BulletHellAlice\Enemy\Projectile.cpp" />
     <ClCompile Include="BulletHellAlice\ProgressionManager.cpp" />
+    <ClCompile Include="TowerDefense\Towers\TowerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -125,10 +128,13 @@
     <ClInclude Include="BulletHellAlice\Enemy\EasySentry.h" />
     <ClInclude Include="BulletHellAlice\HitboxRenderer.h" />
     <ClInclude Include="BulletHellAlice\HealthBarRenderer.h" />
+    <ClInclude Include="TowerDefense\Health\Health.h" />
+    <ClInclude Include="TowerDefense\Towers\Projectile.h" />
     <ClInclude Include="TowerDefense\Towers\Tower.h" />
     <ClInclude Include="TowerDefense\Scenes\TDScene.h" />
     <ClInclude Include="TowerDefense\Ennemis\EnemyMovement.h" />
     <ClInclude Include="TowerDefense\Ennemis\EnemySpawner.h" />
+    <ClInclude Include="TowerDefense\Towers\TowerManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

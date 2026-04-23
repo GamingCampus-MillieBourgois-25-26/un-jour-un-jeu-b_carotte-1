@@ -12,6 +12,11 @@ namespace TowerDefenseAlice
         float speed = 100.0f;
 
         void Update(float _delta_time) {
+            if (currentWaypointIndex >= waypoints.size())
+            {
+				printf("L'ennemi %s a atteint la base !\n", GetOwner()->GetName().c_str());
+                GetOwner()->Disable();
+            }
             if (waypoints.empty() || currentWaypointIndex >= waypoints.size()) {
                 GetOwner()->Disable(); 
                 return;

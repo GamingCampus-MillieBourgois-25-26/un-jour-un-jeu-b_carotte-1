@@ -57,6 +57,15 @@
     <ClCompile Include="TowerDefense\Towers\Tower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TowerDefense\Towers\TowerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerDefense\Towers\Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TowerDefense\Health\Health.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BulletHellAlice\PlayerController.h">
@@ -96,6 +105,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TowerDefense\Towers\Tower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerDefense\Towers\TowerManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerDefense\Towers\Projectile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TowerDefense\Health\Health.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
