@@ -1,8 +1,8 @@
-#include "TowerComponent.h"
+﻿#include "TowerComponent.h"
 #include "GameObject.h"
-#include "EnemyComponent.h"
 #include <cmath>
 #include <iostream>
+#include "EnemyComponent.h"
 
 void TowerComponent::SetEnemies(const std::vector<GameObject*>* _enemies)
 {
@@ -25,13 +25,10 @@ void TowerComponent::Update(float _deltaTime)
 
     for (GameObject* enemyGO : *enemies)
     {
-        if (!enemyGO->IsEnabled())
+        if (!enemyGO)
             continue;
 
-        Component* base = enemyGO->GetComponent<Component>();
-
-        EnemyComponent* enemy = static_cast<EnemyComponent*>(base);
-        if (!enemy || !enemy->IsActive())
+        if (!enemyGO->IsEnabled())
             continue;
 
         Maths::Vector2f enemyPos = enemyGO->GetPosition();
@@ -41,7 +38,12 @@ void TowerComponent::Update(float _deltaTime)
 
         if (dist <= range)
         {
-            std::cout << "Enemy in range!" << std::endl;
+            auto* enemyComp = enemyGO->GetComponent<EnemyComponent>();
+
+            if (enemyComp)
+            {
+                enemyComp->TakeDamage(10);
+            }
             break;
         }
     }

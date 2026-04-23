@@ -3,6 +3,7 @@
 #include "Core/Scene.h"
 #include <vector>
 #include "Maths/Vector2.h"
+#include "EnemyComponent.h"
 
 class GameObject;
 

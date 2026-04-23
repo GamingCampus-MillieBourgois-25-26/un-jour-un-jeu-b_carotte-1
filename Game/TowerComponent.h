@@ -3,7 +3,6 @@
 #include "Core/Component.h"
 #include <vector>
 
-class GameObject;
 class EnemyComponent;
 
 class TowerComponent : public Component

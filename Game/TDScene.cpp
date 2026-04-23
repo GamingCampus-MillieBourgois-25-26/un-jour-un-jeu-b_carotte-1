@@ -25,6 +25,8 @@ TDScene::TDScene() : Scene("TDScene")
 
     GameObject* waveManager = CreateGameObject("WaveManager");
     waveManager->CreateComponent<WaveManagerComponent>();
+    PlaceTower(Maths::Vector2f(400.f, 300.f));
+
 }
 
 
@@ -106,7 +108,6 @@ void TDScene::SpawnEnemy()
             enemy->Enable();
 
             auto* enemyComp = enemy->GetComponent<EnemyComponent>();
-
             if (enemyComp)
                 enemyComp->Activate(pathPoints);
 
@@ -128,12 +129,11 @@ void TDScene::CreateEnemyPool()
         GameObject* enemy = CreateGameObject("Enemy");
 
         enemy->CreateComponent<SpriteRenderer>(enemyTexture);
-
         enemy->CreateComponent<EnemyComponent>();
 
         enemy->Disable();
 
-        enemyPool.push_back(enemy);
+        enemyPool.push_back(enemy); // ✔️ correct
     }
 }
 

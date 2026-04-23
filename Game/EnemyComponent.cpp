@@ -8,12 +8,23 @@ void EnemyComponent::Activate(const std::vector<Maths::Vector2f>& _path)
     currentIndex = 1;
     isActive = true;
 
+
     GetOwner()->SetPosition(path[0]);
 }
 
 bool EnemyComponent::IsActive() const
 {
     return isActive;
+}
+
+void EnemyComponent::TakeDamage(int dmg)
+{
+    hp -= dmg;
+
+    if (hp <= 0)
+    {
+        GetOwner()->Disable();
+    }
 }
 
 void EnemyComponent::Update(float _deltaTime)
