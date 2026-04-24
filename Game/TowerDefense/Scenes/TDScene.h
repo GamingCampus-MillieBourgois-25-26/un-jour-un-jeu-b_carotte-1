@@ -62,7 +62,7 @@ namespace TowerDefenseAlice
             for (int i = 0; i < 10; i++)
             {
                 GameObject* t = CreateGameObject("Pool_Tower_" + std::to_string(i));
-                t->SetPosition({ -1000.f, -1000.f });
+//                t->SetPosition({ -1000.f, -1000.f });
                 t->Disable();
                 t->CreateComponent<Tower>();
                 if (towerTex) {

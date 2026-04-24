@@ -95,6 +95,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clicker\AutoClicker.cpp" />
     <ClCompile Include="BulletHellAlice\Scenes\GameScene.cpp" />
     <ClCompile Include="BulletHellAlice\PlayerController.cpp" />
     <ClCompile Include="BulletHellAlice\Enemy\FanShooter.cpp" />
@@ -102,6 +103,8 @@
     <ClCompile Include="BulletHellAlice\Enemy\EasySentry.cpp" />
     <ClCompile Include="BulletHellAlice\HitboxRenderer.cpp" />
     <ClCompile Include="BulletHellAlice\HealthBarRenderer.cpp" />
+    <ClCompile Include="Clicker\ClickerComponent.cpp" />
+    <ClCompile Include="Clicker\Scenes\ClickerScene.cpp" />
     <ClCompile Include="TowerDefense\Health\Health.cpp" />
     <ClCompile Include="TowerDefense\Towers\Projectile.cpp" />
     <ClCompile Include="TowerDefense\Towers\Tower.cpp" />
@@ -112,6 +115,7 @@
     <ClCompile Include="BulletHellAlice\Enemy\Projectile.cpp" />
     <ClCompile Include="BulletHellAlice\ProgressionManager.cpp" />
     <ClCompile Include="TowerDefense\Towers\TowerManager.cpp" />
+    <ClCompile Include="Clicker\UpgradeComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -119,6 +123,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Clicker\AutoClicker.h" />
     <ClInclude Include="BulletHellAlice\PlayerController.h" />
     <ClInclude Include="BulletHellAlice\Scenes\GameScene.h" />
     <ClInclude Include="BulletHellAlice\Enemy\Projectile.h" />
@@ -128,6 +133,8 @@
     <ClInclude Include="BulletHellAlice\Enemy\EasySentry.h" />
     <ClInclude Include="BulletHellAlice\HitboxRenderer.h" />
     <ClInclude Include="BulletHellAlice\HealthBarRenderer.h" />
+    <ClInclude Include="Clicker\ClickerComponent.h" />
+    <ClInclude Include="Clicker\Scenes\ClickerScene.h" />
     <ClInclude Include="TowerDefense\Health\Health.h" />
     <ClInclude Include="TowerDefense\Towers\Projectile.h" />
     <ClInclude Include="TowerDefense\Towers\Tower.h" />
@@ -135,6 +142,7 @@
     <ClInclude Include="TowerDefense\Ennemis\EnemyMovement.h" />
     <ClInclude Include="TowerDefense\Ennemis\EnemySpawner.h" />
     <ClInclude Include="TowerDefense\Towers\TowerManager.h" />
+    <ClInclude Include="Clicker\UpgradeComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
