@@ -74,5 +74,17 @@ void ClickComponent::Update(float deltaTime)
 
     // appliquer scale
     GetOwner()->SetScale({ currentScale, currentScale });
+
+
+}
+
+void ClickComponent::Start()
+{
+    GameObject* textGO = GetOwner()->GetScene()->CreateGameObject("ScoreText");
+
+    scoreText = textGO->CreateComponent<TextRenderer>("Score: 0");
+    scoreText->SetColor(sf::Color::White);
+
+    textGO->SetPosition({ 20.f, 20.f });
 }
 

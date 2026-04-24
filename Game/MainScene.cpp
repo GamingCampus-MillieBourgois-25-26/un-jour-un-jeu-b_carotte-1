@@ -48,13 +48,5 @@ MainScene::MainScene() : Scene("MainScene")
         // 👉 logique de clic
         clicker->CreateComponent<ClickComponent>();
     }
-    // 🟡 SCORE UI (EN HAUT GAUCHE)
-    {
-        GameObject* text = CreateGameObject("TEST");
 
-        auto* txt = text->CreateComponent<TextRenderer>("HELLO");
-        txt->SetColor(sf::Color::Red);
-
-        text->SetPosition({ 500.f, 400.f });
-    }
 }
