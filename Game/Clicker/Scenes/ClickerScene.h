@@ -5,13 +5,8 @@
 #include "Components/SpriteRenderer.h"
 #include "../ClickerComponent.h"
 #include "Engine.h"
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
-#include "../AutoClicker.h"
 #include "../UpgradeComponent.h"
-#include <string>
+#include "../AutoClicker.h"
 
 namespace ClickerAlice
 {
@@ -22,30 +17,41 @@ namespace ClickerAlice
         {
             auto* assets = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 
-            auto* brickTex = assets->LoadAsset<Texture>("first_brick.png");
+            Texture* bgTex = assets->LoadAsset<Texture>("backgroundEmpty.png");
+
+            GameObject* bg1 = CreateGameObject("Background1");
+            bg1->SetPosition({ 0.f, 0.f });
+            bg1->SetScale({ 1.0f, 1.0f });
+            bg1->CreateComponent<SpriteRenderer>(bgTex);
+
+            GameObject* bg2 = CreateGameObject("Background2");
+            bg2->SetPosition({ 1024.f, 0.f });
+            bg2->SetScale({ 1.0f, 1.0f });
+            bg2->CreateComponent<SpriteRenderer>(bgTex);
+
+            Texture* tex0 = assets->LoadAsset<Texture>("first_brick.png");
+            Texture* tex1 = assets->LoadAsset<Texture>("stonebrick.png");
+            Texture* tex2 = assets->LoadAsset<Texture>("bronzebrick.png");
+            Texture* tex3 = assets->LoadAsset<Texture>("happybrick.png");
+            Texture* tex4 = assets->LoadAsset<Texture>("goldbrick.png");
 
             GameObject* brickObj = CreateGameObject("MainBrick");
+            brickObj->SetScale({ 2.0f, 2.0f });
+            brickObj->SetPosition({ 336.0f, 236.0f });
 
-            float baseScale = 2.0f;
-            float offset = (64.0f * baseScale) / 2.0f;
-            brickObj->SetScale({ baseScale, baseScale });
-            brickObj->SetPosition({ 400.0f - offset, 300.0f - offset });
-
-            brickObj->CreateComponent<SpriteRenderer>(brickTex);
+            brickObj->CreateComponent<SpriteRenderer>(tex0);
             auto* clicker = brickObj->CreateComponent<ClickerComponent>();
 
-            GameObject* upgradeObj = CreateGameObject("UpgradeUI");
-            auto* upgradeComp = upgradeObj->CreateComponent<UpgradeComponent>();
+            clicker->AddEvolutionTexture(tex1);
+            clicker->AddEvolutionTexture(tex2);
+            clicker->AddEvolutionTexture(tex3);
+            clicker->AddEvolutionTexture(tex4);
 
-            upgradeComp->SetTarget(clicker);
+            GameObject* upgradeObj = CreateGameObject("UpgradeUI");
+            upgradeObj->CreateComponent<UpgradeComponent>()->SetTarget(clicker);
 
             GameObject* autoClickObj = CreateGameObject("AutoClickUI");
-            auto* autoComp = autoClickObj->CreateComponent<AutoClickerComponent>();
-            autoComp->SetTarget(clicker);
-
+            autoClickObj->CreateComponent<AutoClickerComponent>()->SetTarget(clicker);
         }
-    private:
-        sf::Font gameFont;
     };
-
 }
