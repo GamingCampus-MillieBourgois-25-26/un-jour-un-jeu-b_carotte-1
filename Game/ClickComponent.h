@@ -16,5 +16,9 @@ private:
     float targetScale = 1.f;
 
     TextRenderer* scoreText = nullptr;
+<<<<<<< Updated upstream
     bool textCreated = false;
+=======
+    bool textCreated = false; // 🔥 important
+>>>>>>> Stashed changes
 };
