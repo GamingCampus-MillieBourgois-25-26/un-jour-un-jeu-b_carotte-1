@@ -2,7 +2,11 @@
 
 #include <iostream>
 
-#include <imgui-SFML.h>
+#include <ImGui-SFML/imgui-SFML.h>
+
+#include <SFML/Graphics/RenderWindow.hpp>
+
+#include "Core/GameObject.h"
 
 #include "SFML/Graphics/Shape.hpp"
 #include "Utils/ImGuiUtilities.h"
@@ -23,9 +27,10 @@ void RectangleShapeRenderer::Render(sf::RenderWindow* _window)
     ARenderedComponent::Render(_window);
 
     const GameObject* owner = GetOwner();
-
     const Maths::Vector2<float> position = owner->GetPosition();
-    shape->setPosition({position.x, position.y});
+
+    shape->setPosition(static_cast<sf::Vector2f>(position));
+    shape->setOrigin(static_cast<sf::Vector2f>(GetPivot()));
     shape->setSize(static_cast<sf::Vector2f>(owner->GetScale() * size));
     shape->setRotation(owner->GetRotation());
     shape->setFillColor(color);

@@ -8,11 +8,6 @@ namespace Demo
     {
     public:
         DemoScene();
-
-        void CreateRandomTile();
-
-        float minSize = 100.f;
-        float maxSize = 300.f;
     };
 }
 

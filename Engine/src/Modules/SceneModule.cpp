@@ -3,6 +3,8 @@
 #include <ranges>
 
 #include "ModuleManager.h"
+#include "Modules/TimeModule.h"
+#include "Modules/WindowModule.h"
 
 void SceneModule::Start()
 {
@@ -10,11 +12,6 @@ void SceneModule::Start()
 
     timeModule = moduleManager->GetModule<TimeModule>();
     windowModule = moduleManager->GetModule<WindowModule>();
-
-    for (const auto& scene : scenes)
-    {
-        scene->Start();
-    }
 }
 
 void SceneModule::Render()
@@ -40,11 +37,6 @@ void SceneModule::Update()
 void SceneModule::Awake()
 {
     Module::Awake();
-
-    for (const auto& scene : scenes)
-    {
-        scene->Awake();
-    }
 }
 
 void SceneModule::Destroy()
@@ -150,11 +142,6 @@ void SceneModule::Present()
     }
 }
 
-const std::vector<std::unique_ptr<Scene>>& SceneModule::GetScenesList() const
-{
-    return scenes;
-}
-
 Scene* SceneModule::GetSceneByName(const std::string& _scene_name) const
 {
     auto condition = [_scene_name](const std::unique_ptr<Scene>& _scene)
@@ -170,6 +157,11 @@ Scene* SceneModule::GetSceneByName(const std::string& _scene_name) const
     Logger::Log(ELogLevel::Warning, "Scene with name {} not found.", _scene_name);
 
     return nullptr;
+}
+
+const std::vector<std::unique_ptr<Scene>>& SceneModule::GetScenesList() const
+{
+    return scenes;
 }
 
 bool SceneModule::DeleteSceneByName(const std::string& _scene_name) const

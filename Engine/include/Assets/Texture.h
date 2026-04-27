@@ -3,10 +3,10 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
+#include "Assets/SfmlAsset.h"
 #include "Core/Asset.h"
-#include "Assets/SFMLAsset.h"
 
-class Texture : public Asset, public SfmlAsset<sf::Texture>
+class Texture : public SfmlAsset<sf::Texture>
 {
 public:
     explicit Texture() = default;
