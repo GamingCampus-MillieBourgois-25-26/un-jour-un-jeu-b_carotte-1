@@ -1,7 +1,6 @@
 ﻿#include "Engine.h"
 #include "SceneModule.h"
-#include "TDScene.h"
-
+#include "TowerDefense/TDScene.h"
 #include "Clicker/MainScene.h"
 
 int main(int argc, const char** argv)

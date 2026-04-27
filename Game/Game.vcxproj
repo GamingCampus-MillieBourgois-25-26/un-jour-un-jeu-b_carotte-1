@@ -14,12 +14,9 @@
     <ClCompile Include="Clicker\AnimalData.cpp" />
     <ClCompile Include="Clicker\ClickArea.cpp" />
     <ClCompile Include="Clicker\ClickComponent.cpp" />
-    <ClCompile Include="EnemyComponent.cpp" />
     <ClCompile Include="Clicker\FloatingTextComponent.cpp" />
     <ClCompile Include="Clicker\GameManager.cpp" />
-    <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="Clicker\MainScene.cpp" />
-    <ClCompile Include="ProjectileComponent.cpp" />
     <ClCompile Include="Clicker\ShopItem.cpp" />
     <ClCompile Include="Clicker\ShopPanel.cpp" />
     <ClCompile Include="pch.cpp">
@@ -27,26 +24,26 @@
       <ForcedIncludeFiles />
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TowerDefense\EnemyComponent.cpp" />
+    <ClCompile Include="TowerDefense\InputComponent.cpp" />
+    <ClCompile Include="TowerDefense\ProjectileComponent.cpp" />
+    <ClCompile Include="TowerDefense\TDScene.cpp" />
+    <ClCompile Include="TowerDefense\TowerComponent.cpp" />
+    <ClCompile Include="TowerDefense\UIComponent.cpp" />
+    <ClCompile Include="TowerDefense\WaveManagerComponent.cpp" />
   </ItemGroup>
   <ItemGroup Label="Demo">
     <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="include\Demo\TileSpawner.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
-    <ClCompile Include="TDScene.cpp" />
-    <ClCompile Include="TowerComponent.cpp" />
-    <ClCompile Include="UIComponent.cpp" />
-    <ClCompile Include="WaveManagerComponent.cpp" />
   </ItemGroup>
   <ItemGroup Label="Demo">
     <ClInclude Include="Clicker\AnimalData.h" />
     <ClInclude Include="Clicker\ClickArea.h" />
     <ClInclude Include="Clicker\ClickComponent.h" />
-    <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="Clicker\FloatingTextComponent.h" />
     <ClInclude Include="Clicker\GameManager.h" />
-    <ClInclude Include="InputComponent.h" />
     <ClInclude Include="Clicker\MainScene.h" />
-    <ClInclude Include="ProjectileComponent.h" />
     <ClInclude Include="Clicker\ShopItem.h" />
     <ClInclude Include="Clicker\ShopPanel.h" />
     <ClInclude Include="include\Demo\Player.h" />
@@ -55,10 +52,13 @@
     <ClInclude Include="include\Demo\TileSpawner.h" />
     <ClInclude Include="include\pch.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
-    <ClInclude Include="TDScene.h" />
-    <ClInclude Include="TowerComponent.h" />
-    <ClInclude Include="UIComponent.h" />
-    <ClInclude Include="WaveManagerComponent.h" />
+    <ClInclude Include="TowerDefense\EnemyComponent.h" />
+    <ClInclude Include="TowerDefense\InputComponent.h" />
+    <ClInclude Include="TowerDefense\ProjectileComponent.h" />
+    <ClInclude Include="TowerDefense\TDScene.h" />
+    <ClInclude Include="TowerDefense\TowerComponent.h" />
+    <ClInclude Include="TowerDefense\UIComponent.h" />
+    <ClInclude Include="TowerDefense\WaveManagerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
