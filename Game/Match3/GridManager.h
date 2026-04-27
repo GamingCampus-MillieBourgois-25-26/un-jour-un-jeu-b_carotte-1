@@ -54,6 +54,7 @@ namespace Match3 {
 
         void UpdateVisuals();
         void SpawnCandyVisual(CandyType _type, int _x, int _y);
+		void RefillGrid();
         void DebugPrintGrid();
     };
 }

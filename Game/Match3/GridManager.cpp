@@ -17,18 +17,33 @@ namespace Match3 {
     }
 
     void GridManager::InitializeGrid() {
+        std::srand(static_cast<unsigned int>(std::time(nullptr)));
+
         grid.resize(width, std::vector<CandyType>(height, CandyType::EMPTY));
 
         for (int x = 0; x < width; ++x) {
             for (int y = 0; y < height; ++y) {
                 CandyType newType;
+
                 do {
-                    newType = static_cast<CandyType>((rand() % ((int)CandyType::COUNT - 1)) + 1);
-                } while ((x >= 2 && grid[x - 1][y] == newType && grid[x - 2][y] == newType) ||
-                    (y >= 2 && grid[x][y - 1] == newType && grid[x][y - 2] == newType));
+                    newType = static_cast<CandyType>((std::rand() % (static_cast<int>(CandyType::COUNT) - 1)) + 1);
+                } while (
+                    (x >= 2 && grid[x - 1][y] == newType && grid[x - 2][y] == newType) ||
+                    (y >= 2 && grid[x][y - 1] == newType && grid[x][y - 2] == newType)
+                    );
 
                 grid[x][y] = newType;
                 SpawnCandyVisual(newType, x, y);
+            }
+        }
+    }
+
+    void GridManager::RefillGrid() {
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                if (grid[x][y] == CandyType::EMPTY) {
+                    grid[x][y] = static_cast<CandyType>((rand() % ((int)CandyType::COUNT - 1)) + 1);
+                }
             }
         }
     }
@@ -111,7 +126,53 @@ namespace Match3 {
     }
 
     void GridManager::ResolveMatches() {
-        DebugPrintGrid();
+        currentState = GameState::CHECKING;
+
+        while (CheckMatches()) {
+            UpdateVisuals();
+            ApplyGravity();
+            RefillGrid();
+            UpdateVisuals();
+            DebugPrintGrid();
+        }
+
+        currentState = GameState::IDLE;
+    }
+
+    void GridManager::ApplyGravity()
+    {
+        for (int x = 0; x < width; ++x) {
+            int emptySlot = height - 1;
+            for (int y = height - 1; y >= 0; --y) {
+                if (grid[x][y] != CandyType::EMPTY) {
+                    if (y != emptySlot) {
+                        grid[x][emptySlot] = grid[x][y];
+                        grid[x][y] = CandyType::EMPTY;
+                    }
+                    emptySlot--;
+                }
+            }
+        }
+    }
+
+    void GridManager::UpdateVisuals()
+    {
+        if (pool == nullptr) return;
+
+        for (auto const& [type, list] : *pool) {
+            for (GameObject* obj : list) {
+                obj->Disable();
+            }
+        }
+
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height; ++y) {
+                CandyType type = grid[x][y];
+                if (type != CandyType::EMPTY) {
+                    SpawnCandyVisual(type, x, y);
+                }
+            }
+        }
     }
 
     void GridManager::SpawnCandyVisual(CandyType _type, int _x, int _y) {
