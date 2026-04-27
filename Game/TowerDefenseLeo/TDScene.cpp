@@ -89,7 +89,7 @@ void TDScene::CreateMapSprite()
         ->GetModule<AssetsModule>();
 
     // Charger la texture
-    Texture* mapTexture = assets->LoadAsset<Texture>("map.png");
+    Texture* mapTexture = assets->LoadAsset<Texture>("mapLeo.png");
 
     // Créer l'objet
     GameObject* map = CreateGameObject("Map");

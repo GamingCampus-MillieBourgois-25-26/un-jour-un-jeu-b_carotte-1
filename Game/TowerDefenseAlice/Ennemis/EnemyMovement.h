@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Component.h"
 #include "Maths/Vector2.h"
+#include "Core/GameObject.h"
 #include <vector>
 
 namespace TowerDefenseAlice

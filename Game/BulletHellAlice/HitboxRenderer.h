@@ -1,6 +1,8 @@
 #pragma once
 #include "Core/Component.h"
 #include <SFML/Graphics.hpp>
+#include "Core/GameObject.h"
+#include "Maths/Vector2.h"
 
 namespace BulletHellAlice {
     class HitboxRenderer : public Component {
