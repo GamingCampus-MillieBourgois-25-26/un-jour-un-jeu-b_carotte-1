@@ -11,6 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BulletHell\Bullet.cpp" />
+    <ClCompile Include="BulletHell\BulletHellPlayer.cpp" />
+    <ClCompile Include="BulletHell\BulletHellScene.cpp" />
+    <ClCompile Include="BulletHell\BulletSpawner.cpp" />
     <ClCompile Include="Clicker\AnimalData.cpp" />
     <ClCompile Include="Clicker\ClickArea.cpp" />
     <ClCompile Include="Clicker\ClickComponent.cpp" />
@@ -19,6 +23,8 @@
     <ClCompile Include="Clicker\MainScene.cpp" />
     <ClCompile Include="Clicker\ShopItem.cpp" />
     <ClCompile Include="Clicker\ShopPanel.cpp" />
+    <ClCompile Include="BulletHell\Enemy.cpp" />
+    <ClCompile Include="BulletHell\Game.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
       <ForcedIncludeFiles />
@@ -38,6 +44,10 @@
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup Label="Demo">
+    <ClInclude Include="BulletHell\Bullet.h" />
+    <ClInclude Include="BulletHell\BulletHellPlayer.h" />
+    <ClInclude Include="BulletHell\BulletHellScene.h" />
+    <ClInclude Include="BulletHell\BulletSpawner.h" />
     <ClInclude Include="Clicker\AnimalData.h" />
     <ClInclude Include="Clicker\ClickArea.h" />
     <ClInclude Include="Clicker\ClickComponent.h" />
@@ -46,6 +56,8 @@
     <ClInclude Include="Clicker\MainScene.h" />
     <ClInclude Include="Clicker\ShopItem.h" />
     <ClInclude Include="Clicker\ShopPanel.h" />
+    <ClInclude Include="BulletHell\Enemy.h" />
+    <ClInclude Include="BulletHell\Game.h" />
     <ClInclude Include="include\Demo\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
     <ClInclude Include="include\Demo\TileCounter.h" />
