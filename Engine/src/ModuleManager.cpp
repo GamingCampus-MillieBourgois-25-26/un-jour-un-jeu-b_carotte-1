@@ -10,7 +10,14 @@
 ModuleManager::~ModuleManager()
 {
     Destroy();
+
+    for (const Module* module : modules)
+        delete module;
     modules.clear();
+
+    for (const Module* module : pendingModules)
+        delete module;
+    pendingModules.clear();
 }
 
 void ModuleManager::CreateDefaultModules()
@@ -25,8 +32,41 @@ void ModuleManager::CreateDefaultModules()
 
 void ModuleManager::AddModule(Module* _module)
 {
-    _module->moduleManager = this;
-    modules.push_back(_module);
+    if (_module->moduleManager == nullptr)
+    {
+        _module->moduleManager = this;
+        _module->Awake();
+        _module->OnEnable();
+    }
+
+    pendingModules.push_back(_module);
+}
+
+void ModuleManager::Initialize()
+{
+    CreateDefaultModules();
+
+    FlushPending();
+}
+
+void ModuleManager::Tick()
+{
+    FlushPending();
+
+    Update();
+    PreRender();
+    Render();
+    OnGUI();
+    OnDebug();
+    PostRender();
+    Present();
+}
+
+void ModuleManager::Clean()
+{
+    OnDisable();
+    Destroy();
+    Finalize();
 }
 
 void ModuleManager::Awake() const
@@ -131,6 +171,11 @@ void ModuleManager::Destroy() const
     {
         module->Destroy();
     }
+
+    for (Module* module : pendingModules)
+    {
+        module->Destroy();
+    }
 }
 
 void ModuleManager::Finalize() const
@@ -139,4 +184,19 @@ void ModuleManager::Finalize() const
     {
         module->Finalize();
     }
+
+    for (Module* module : pendingModules)
+    {
+        module->Finalize();
+    }
+}
+
+void ModuleManager::FlushPending()
+{
+    for (Module* module : pendingModules)
+    {
+        modules.push_back(module);
+        module->Start();
+    }
+    pendingModules.clear();
 }

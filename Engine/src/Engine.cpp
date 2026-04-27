@@ -1,5 +1,7 @@
 #include "Engine.h"
 
+#include "SFML/Config.hpp"
+
 #include "Utils/Logger/Logger.h"
 
 Engine* Engine::GetInstance()
@@ -12,44 +14,37 @@ Engine* Engine::GetInstance()
 
 void Engine::Init(const int _argc, const char** _argv)
 {
-    Logger::Log(ELogLevel::Debug, "Engine Initialization Started");
-    Logger::Log(ELogLevel::Debug, "Working Directory : \"{}\"", std::filesystem::current_path().string());
+    Logger::Log(ELogLevel::Info, "SFML Discovery Engine - Version {}", EngineConfig::EngineVersion);
+    Logger::Log(ELogLevel::Info, "Compiled on {} with SFML {}.{}.{}", __DATE__, SFML_VERSION_MAJOR, SFML_VERSION_MINOR, SFML_VERSION_PATCH);
+
+    Logger::Log(ELogLevel::Info, "Engine Initialization Started");
+    Logger::Log(ELogLevel::Info, "Working Directory : \"{}\"", std::filesystem::current_path().string());
 
     config.ParseCommandLineArguments(_argc, _argv);
 
-    moduleManager->CreateDefaultModules();
-    moduleManager->Awake();
+    Logger::Log(ELogLevel::Info, "Engine Starting");
+
+    moduleManager->Initialize();
 }
 
 void Engine::Run() const
 {
-    Logger::Log(ELogLevel::Debug, "Engine Starting");
-
-    moduleManager->Start();
-    moduleManager->OnEnable();
-
-    Logger::Log(ELogLevel::Debug, "Engine Running");
+    Logger::Log(ELogLevel::Info, "Engine Running");
 
     while (!quitRequested)
     {
-        moduleManager->Update();
-        moduleManager->PreRender();
-        moduleManager->Render();
-        moduleManager->OnGUI();
-        moduleManager->OnDebug();
-        moduleManager->PostRender();
-        moduleManager->Present();
+        moduleManager->Tick();
     }
 
-    Logger::Log(ELogLevel::Debug, "Engine Stopped");
+    moduleManager->Clean();
 
-    moduleManager->OnDisable();
-    moduleManager->Destroy();
-    moduleManager->Finalize();
+    Logger::Log(ELogLevel::Info, "Engine Closing");
 }
 
 void Engine::RequestQuit()
 {
+    Logger::Log(ELogLevel::Info, "Quit Requested");
+
     quitRequested = true;
 }
 
