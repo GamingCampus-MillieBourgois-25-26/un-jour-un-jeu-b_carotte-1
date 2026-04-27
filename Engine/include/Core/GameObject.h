@@ -1,8 +1,8 @@
 #pragma once
 
+#include <memory>
 #include <string>
 #include <vector>
-#include <memory>
 
 #include "Core/Component.h"
 #include "Maths/Vector2.h"
@@ -49,6 +49,8 @@ public:
     void OnDebugSelected() const;
     void Present();
 
+    void FlushPending();
+
     void OnEnable() const;
     void OnDisable() const;
 
@@ -76,6 +78,7 @@ private:
     Maths::Vector2<float> scale = Maths::Vector2f::One;
 
     std::vector<std::unique_ptr<Component>> components;
+    std::vector<std::unique_ptr<Component>> pendingComponents;
 
     Scene* scene = nullptr;
 
