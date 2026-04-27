@@ -22,12 +22,12 @@ namespace ClickerAlice
             GameObject* bg1 = CreateGameObject("Background1");
             bg1->SetPosition({ 0.f, 0.f });
             bg1->SetScale({ 1.0f, 1.0f });
-            bg1->CreateComponent<SpriteRenderer>(bgTex);
+            bg1->CreateComponent<SpriteRenderer>(bgTex, false);
 
             GameObject* bg2 = CreateGameObject("Background2");
             bg2->SetPosition({ 1024.f, 0.f });
             bg2->SetScale({ 1.0f, 1.0f });
-            bg2->CreateComponent<SpriteRenderer>(bgTex);
+            bg2->CreateComponent<SpriteRenderer>(bgTex, false);
 
             Texture* tex0 = assets->LoadAsset<Texture>("first_brick.png");
             Texture* tex1 = assets->LoadAsset<Texture>("stonebrick.png");
@@ -39,7 +39,7 @@ namespace ClickerAlice
             brickObj->SetScale({ 2.0f, 2.0f });
             brickObj->SetPosition({ 336.0f, 236.0f });
 
-            brickObj->CreateComponent<SpriteRenderer>(tex0);
+            brickObj->CreateComponent<SpriteRenderer>(tex0, false);
             auto* clicker = brickObj->CreateComponent<ClickerComponent>();
 
             clicker->AddEvolutionTexture(tex1);

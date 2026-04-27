@@ -25,7 +25,7 @@ namespace TowerDefenseAlice
             Texture* backgroundTex = assets->LoadAsset<Texture>("map.png");
             GameObject* background = CreateGameObject("Background");
             if (backgroundTex) {
-                background->CreateComponent<SpriteRenderer>(backgroundTex);
+                background->CreateComponent<SpriteRenderer>(backgroundTex, false);
             }
             background->SetScale({ 0.7f, 0.7f });
 
@@ -53,7 +53,7 @@ namespace TowerDefenseAlice
                 enemy->CreateComponent<TowerDefenseAlice::EnemyMovement>();
                 enemy->CreateComponent<Health>();
 
-                if (tex) enemy->CreateComponent<SpriteRenderer>(tex);
+                if (tex) enemy->CreateComponent<SpriteRenderer>(tex, false);
 				enemy->SetPosition({ -1000.f, -1000.f });
                 enemy->Disable();
                 spawnerComp->AddToPool(enemy);
@@ -62,11 +62,11 @@ namespace TowerDefenseAlice
             for (int i = 0; i < 10; i++)
             {
                 GameObject* t = CreateGameObject("Pool_Tower_" + std::to_string(i));
-//                t->SetPosition({ -1000.f, -1000.f });
+                t->SetPosition({ -1000.f, -1000.f });
                 t->Disable();
                 t->CreateComponent<Tower>();
                 if (towerTex) {
-                    t->CreateComponent<SpriteRenderer>(towerTex);
+                    t->CreateComponent<SpriteRenderer>(towerTex, false);
                 }
             }
 
@@ -78,7 +78,7 @@ namespace TowerDefenseAlice
                 p->Disable();
                 p->CreateComponent<TowerDefenseAlice::Projectile>();
                 if (projTex) {
-                    p->CreateComponent<SpriteRenderer>(projTex);
+                    p->CreateComponent<SpriteRenderer>(projTex, false);
                 }
             }
             GameObject* manager = CreateGameObject("TowerManager");

@@ -49,7 +49,7 @@ namespace BulletHellAlice
                 for (int y = 0; y < 4; ++y) {
                     GameObject* bgPart = CreateGameObject("BG_" + std::to_string(x) + "_" + std::to_string(y));
                     bgPart->SetPosition({ x * 256.f, y * 256.f });
-                    bgPart->CreateComponent<SpriteRenderer>(tex);
+                    bgPart->CreateComponent<SpriteRenderer>(tex, false);
                     bgPart->Awake(); bgPart->Start();
                 }
             }
@@ -71,7 +71,7 @@ namespace BulletHellAlice
             AssetsModule* am = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
             if (am) {
                 Texture* tex = am->LoadAsset<Texture>("player.png");
-                if (tex) playerRef->CreateComponent<SpriteRenderer>(tex);
+                if (tex) playerRef->CreateComponent<SpriteRenderer>(tex, false);
             }
             playerRef->Awake(); playerRef->Start();
         }
@@ -92,7 +92,7 @@ namespace BulletHellAlice
                 debug->size = Maths::Vector2f{ 10.f, 40.f };
                 debug->color = sf::Color::Red;
 
-                if (bulletTex) b->CreateComponent<SpriteRenderer>(bulletTex);
+                if (bulletTex) b->CreateComponent<SpriteRenderer>(bulletTex, false);
                 b->Awake(); b->Start();
             }
         }
@@ -116,7 +116,7 @@ namespace BulletHellAlice
 
             if (am) {
                 Texture* bTex = am->LoadAsset<Texture>("boss.png");
-                if (bTex) boss->CreateComponent<SpriteRenderer>(bTex);
+                if (bTex) boss->CreateComponent<SpriteRenderer>(bTex, false);
             }
             boss->Awake(); boss->Start();
 
@@ -139,7 +139,7 @@ namespace BulletHellAlice
                 debugS->size = Maths::Vector2f{ 80.f, 60.f };
                 debugS->color = sf::Color::Yellow;
 
-                if (sTex) sentry->CreateComponent<SpriteRenderer>(sTex);
+                if (sTex) sentry->CreateComponent<SpriteRenderer>(sTex, false);
                 prog->sentries.push_back(s);
                 sentry->Awake(); sentry->Start();
             }
