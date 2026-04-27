@@ -21,8 +21,7 @@ int main(int argc, char* argv[])
 //    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<TD::TDScene>();
 //    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<BulletHellScene>();
 
-      engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<Match3::GameScene>();
-
+    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<Match3::GameScene>();
 
     engine->Run();
 

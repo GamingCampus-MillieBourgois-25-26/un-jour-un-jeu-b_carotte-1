@@ -1,51 +1,54 @@
 #pragma once
 
 #include <vector>
-#include <optional>
+#include <map>
+#include <string>
 #include "Core/Component.h"
 #include "Maths/Vector2.h"
 
-// Types de bonbons
-enum class CandyType {
-    EMPTY = 0,
-    RED,
-    BLUE,
-    GREEN,
-    YELLOW,
-    PURPLE,
-    COUNT
-};
+class GameObject;
 
-class GridManager : public Component
-{
-public:
-    void Start() override;
-    void Update(float _delta_time) override;
+namespace Match3 {
 
+    enum class CandyType {
+        EMPTY = 0,
+        RED,
+        BLUE,
+        GREEN,
+        YELLOW,
+        PURPLE,
+        COUNT
+    };
 
-    // Pour savoir quoi dessiner et où
-    CandyType GetCandyAt(int x, int y) const;
-    Maths::Vector2f GetWorldPosition(int x, int y) const;
+    class GridManager : public Component
+    {
+    public:
+        void Start() override;
+        void Update(float _delta_time) override;
 
-    // Pour savoir si une animation est en cours
-    bool IsProcessing() const { return isAnimating; }
+        void SetPool(std::map<CandyType, std::vector<GameObject*>>* _pool) {
+            pool = _pool;
+        }
 
-    // Logique Match-3
-    void Swap(Maths::Vector2i posA, Maths::Vector2i posB);
-    bool CheckMatches();
-    void RemoveMatches();
-    void ApplyGravity();
-    void RefillGrid();
+        CandyType GetCandyAt(int x, int y) const;
+        Maths::Vector2f GetWorldPosition(int x, int y) const;
 
-private:
-    void HandleInput();
-    Maths::Vector2i ScreenToGrid(Maths::Vector2i mousePos);
+    private:
+        int width = 8;
+        int height = 8;
+        float cellSize = 64.f;
 
-    int width = 8;
-    int height = 8;
-    float cellSize = 64.f;
-    bool isAnimating = false;
+        std::vector<std::vector<CandyType>> grid;
 
-    std::vector<std::vector<CandyType>> grid;
-    std::optional<Maths::Vector2i> selectedTile;
-};
+        std::map<CandyType, std::vector<GameObject*>>* pool = nullptr;
+
+        Maths::Vector2i selectedTile = { -1, -1 };
+
+        void InitializeGrid();
+        void HandleInput();
+        void SpawnCandyVisual(CandyType _type, int _x, int _y);
+
+        bool CheckMatches();
+        void ResolveMatches();
+    };
+}
