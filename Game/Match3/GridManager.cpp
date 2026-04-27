@@ -7,10 +7,13 @@ namespace Match3 {
 
     void GridManager::Start() {
         InitializeGrid();
+        DebugPrintGrid();
     }
 
     void GridManager::Update(float _delta_time) {
-        HandleInput();
+        if (currentState == GameState::IDLE) {
+            HandleInput();
+        }
     }
 
     void GridManager::InitializeGrid() {
@@ -32,13 +35,11 @@ namespace Match3 {
 
     void GridManager::HandleInput() {
         if (InputModule::GetMouseButtonDown(sf::Mouse::Button::Left)) {
-
             Maths::Vector2i mPos = InputModule::GetMousePosition();
+            Maths::Vector2f origin = GetOwner()->GetPosition();
 
-            Maths::Vector2f gridOrigin = GetOwner()->GetPosition();
-
-            float localX = static_cast<float>(mPos.x) - gridOrigin.x;
-            float localY = static_cast<float>(mPos.y) - gridOrigin.y;
+            float localX = static_cast<float>(mPos.x) - origin.x;
+            float localY = static_cast<float>(mPos.y) - origin.y;
 
             int gx = static_cast<int>(localX / cellSize);
             int gy = static_cast<int>(localY / cellSize);
@@ -46,26 +47,81 @@ namespace Match3 {
             if (gx >= 0 && gx < width && gy >= 0 && gy < height) {
                 if (selectedTile.x == -1) {
                     selectedTile = Maths::Vector2i(gx, gy);
-                    std::cout << "Selection : " << gx << "," << gy << std::endl;
                 }
                 else {
-                    std::cout << "Swap essai entre (" << selectedTile.x << "," << selectedTile.y
-                        << ") et (" << gx << "," << gy << ")" << std::endl;
+                    int diffX = std::abs(selectedTile.x - gx);
+                    int diffY = std::abs(selectedTile.y - gy);
+
+                    if ((diffX == 1 && diffY == 0) || (diffX == 0 && diffY == 1)) {
+                        Swap(selectedTile, Maths::Vector2i(gx, gy));
+                    }
                     selectedTile = Maths::Vector2i(-1, -1);
                 }
             }
         }
     }
 
+    void GridManager::Swap(Maths::Vector2i a, Maths::Vector2i b) {
+        CandyType temp = grid[a.x][a.y];
+        grid[a.x][a.y] = grid[b.x][b.y];
+        grid[b.x][b.y] = temp;
+
+        if (!CheckMatches()) {
+            grid[b.x][b.y] = grid[a.x][a.y];
+            grid[a.x][a.y] = temp;
+            std::cout << "Swap invalide !" << std::endl;
+        }
+        else {
+            std::cout << "Match trouve !" << std::endl;
+            ResolveMatches();
+        }
+    }
+
+    bool GridManager::CheckMatches() {
+        bool hasMatch = false;
+        std::vector<std::vector<bool>> toDestroy(width, std::vector<bool>(height, false));
+
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width - 2; ++x) {
+                CandyType type = grid[x][y];
+                if (type != CandyType::EMPTY && grid[x + 1][y] == type && grid[x + 2][y] == type) {
+                    toDestroy[x][y] = toDestroy[x + 1][y] = toDestroy[x + 2][y] = true;
+                    hasMatch = true;
+                }
+            }
+        }
+        for (int x = 0; x < width; ++x) {
+            for (int y = 0; y < height - 2; ++y) {
+                CandyType type = grid[x][y];
+                if (type != CandyType::EMPTY && grid[x][y + 1] == type && grid[x][y + 2] == type) {
+                    toDestroy[x][y] = toDestroy[x][y + 1] = toDestroy[x][y + 2] = true;
+                    hasMatch = true;
+                }
+            }
+        }
+
+        if (hasMatch) {
+            for (int x = 0; x < width; ++x) {
+                for (int y = 0; y < height; ++y) {
+                    if (toDestroy[x][y]) grid[x][y] = CandyType::EMPTY;
+                }
+            }
+        }
+        return hasMatch;
+    }
+
+    void GridManager::ResolveMatches() {
+        DebugPrintGrid();
+    }
+
     void GridManager::SpawnCandyVisual(CandyType _type, int _x, int _y) {
         if (_type == CandyType::EMPTY || pool == nullptr) return;
 
         std::vector<GameObject*>& list = (*pool)[_type];
-
-        for (GameObject* candyObj : list) {
-            if (!candyObj->IsEnabled()) {
-                candyObj->Enable();
-                candyObj->SetPosition(GetWorldPosition(_x, _y));
+        for (GameObject* obj : list) {
+            if (!obj->IsEnabled()) {
+                obj->Enable();
+                obj->SetPosition(GetWorldPosition(_x, _y));
                 return;
             }
         }
@@ -79,5 +135,15 @@ namespace Match3 {
     CandyType GridManager::GetCandyAt(int x, int y) const {
         if (x < 0 || x >= width || y < 0 || y >= height) return CandyType::EMPTY;
         return grid[x][y];
+    }
+
+    void GridManager::DebugPrintGrid() {
+        std::cout << "--- GRID STATE ---" << std::endl;
+        for (int y = 0; y < height; ++y) {
+            for (int x = 0; x < width; ++x) {
+                std::cout << (int)grid[x][y] << " ";
+            }
+            std::cout << std::endl;
+        }
     }
 }

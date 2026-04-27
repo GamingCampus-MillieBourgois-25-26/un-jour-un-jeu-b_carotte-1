@@ -31,7 +31,7 @@ namespace Match3 {
                 // Texture* tex = assets->GetAsset<Texture>("Path/To/Candy" + std::to_string(i));
                 // candy->CreateComponent<SpriteRenderer>(tex);
 
-                candy->Disable(); // On les cache au début
+                candy->Disable();
                 candyPool[type].push_back(candy);
             }
         }
