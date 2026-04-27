@@ -113,12 +113,19 @@
     <ClCompile Include="BulletHellAlice\PlayerController.cpp" />
     <ClCompile Include="BulletHellAlice\ProgressionManager.cpp" />
     <ClCompile Include="BulletHellAlice\Scenes\GameScene.cpp" />
-    <ClCompile Include="Clicker\AutoClicker.cpp" />
-    <ClCompile Include="Clicker\ClickerComponent.cpp" />
-    <ClCompile Include="Clicker\Scenes\ClickerScene.cpp" />
-    <ClCompile Include="Clicker\UpgradeComponent.cpp" />
+    <ClCompile Include="ClickerAlice\AutoClicker.cpp" />
+    <ClCompile Include="ClickerAlice\ClickerComponent.cpp" />
+    <ClCompile Include="ClickerAlice\Scenes\ClickerScene.cpp" />
+    <ClCompile Include="ClickerAlice\UpgradeComponent.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pch.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Ennemis\EnemyMovement.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Ennemis\EnemySpawner.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Health\Health.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Scenes\TDScene.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Towers\Projectile.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Towers\Tower.cpp" />
+    <ClCompile Include="TowerDefenseAlice\Towers\TowerManager.cpp" />
     <ClCompile Include="TowerDefenseLeo\EnemyComponent.cpp" />
     <ClCompile Include="TowerDefenseLeo\InputComponent.cpp" />
     <ClCompile Include="TowerDefenseLeo\ProjectileComponent.cpp" />
@@ -126,14 +133,6 @@
     <ClCompile Include="TowerDefenseLeo\TowerComponent.cpp" />
     <ClCompile Include="TowerDefenseLeo\UIComponent.cpp" />
     <ClCompile Include="TowerDefenseLeo\WaveManagerComponent.cpp" />
-    <ClCompile Include="TowerDefense\Health\Health.cpp" />
-    <ClCompile Include="TowerDefense\Towers\Projectile.cpp" />
-    <ClCompile Include="TowerDefense\Towers\Tower.cpp" />
-    <ClCompile Include="TowerDefense\Scenes\TDScene.cpp" />
-    <ClCompile Include="TowerDefense\Ennemis\EnemyMovement.cpp" />
-    <ClCompile Include="TowerDefense\Ennemis\EnemySpawner.cpp" />
-    <ClCompile Include="BulletHellAlice\Enemy\Projectile.cpp" />
-    <ClCompile Include="TowerDefense\Towers\TowerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BulletHellLeo\Bullet.h" />
@@ -152,6 +151,13 @@
     <ClInclude Include="ClickerLeo\ShopPanel.h" />
     <ClInclude Include="include\Demo\Player.h" />
     <ClInclude Include="include\Demo\Tile.h" />
+    <ClInclude Include="TowerDefenseLeo\EnemyComponent.h" />
+    <ClInclude Include="TowerDefenseLeo\InputComponent.h" />
+    <ClInclude Include="TowerDefenseLeo\ProjectileComponent.h" />
+    <ClInclude Include="TowerDefenseLeo\TDScene.h" />
+    <ClInclude Include="TowerDefenseLeo\TowerComponent.h" />
+    <ClInclude Include="TowerDefenseLeo\UIComponent.h" />
+    <ClInclude Include="TowerDefenseLeo\WaveManagerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -159,7 +165,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Clicker\AutoClicker.h" />
+    <ClInclude Include="ClickerAlice\AutoClicker.h" />
     <ClInclude Include="BulletHellAlice\PlayerController.h" />
     <ClInclude Include="BulletHellAlice\Scenes\GameScene.h" />
     <ClInclude Include="BulletHellAlice\Enemy\Projectile.h" />
@@ -169,23 +175,16 @@
     <ClInclude Include="BulletHellAlice\Enemy\EasySentry.h" />
     <ClInclude Include="BulletHellAlice\HitboxRenderer.h" />
     <ClInclude Include="BulletHellAlice\HealthBarRenderer.h" />
-    <ClInclude Include="Clicker\ClickerComponent.h" />
-    <ClInclude Include="Clicker\Scenes\ClickerScene.h" />
-    <ClInclude Include="TowerDefenseLeo\EnemyComponent.h" />
-    <ClInclude Include="TowerDefenseLeo\InputComponent.h" />
-    <ClInclude Include="TowerDefenseLeo\ProjectileComponent.h" />
-    <ClInclude Include="TowerDefenseLeo\TDScene.h" />
-    <ClInclude Include="TowerDefenseLeo\TowerComponent.h" />
-    <ClInclude Include="TowerDefenseLeo\UIComponent.h" />
-    <ClInclude Include="TowerDefenseLeo\WaveManagerComponent.h" />
-    <ClInclude Include="TowerDefense\Health\Health.h" />
-    <ClInclude Include="TowerDefense\Towers\Projectile.h" />
-    <ClInclude Include="TowerDefense\Towers\Tower.h" />
-    <ClInclude Include="TowerDefense\Scenes\TDScene.h" />
-    <ClInclude Include="TowerDefense\Ennemis\EnemyMovement.h" />
-    <ClInclude Include="TowerDefense\Ennemis\EnemySpawner.h" />
-    <ClInclude Include="TowerDefense\Towers\TowerManager.h" />
-    <ClInclude Include="Clicker\UpgradeComponent.h" />
+    <ClInclude Include="ClickerAlice\ClickerComponent.h" />
+    <ClInclude Include="ClickerAlice\Scenes\ClickerScene.h" />
+    <ClInclude Include="TowerDefenseAlice\Health\Health.h" />
+    <ClInclude Include="TowerDefenseAlice\Towers\Projectile.h" />
+    <ClInclude Include="TowerDefenseAlice\Towers\Tower.h" />
+    <ClInclude Include="TowerDefenseAlice\Scenes\TDScene.h" />
+    <ClInclude Include="TowerDefenseAlice\Ennemis\EnemyMovement.h" />
+    <ClInclude Include="TowerDefenseAlice\Ennemis\EnemySpawner.h" />
+    <ClInclude Include="TowerDefenseAlice\Towers\TowerManager.h" />
+    <ClInclude Include="ClickerAlice\UpgradeComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
